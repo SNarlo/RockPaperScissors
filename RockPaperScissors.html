@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
     <script></script>
 </head>
@@ -10,39 +11,131 @@
     let selections = ['ROCK', 'PAPER', 'SCISSORS'];
     let choices = {ROCK: {value: 0}, 
                 PAPER: {value: 1}, 
-                SCISSORS: {value: 2}}
+                SCISSORS: {value: 2}
+                }
+    let playerScores = 0;
+    let computerScores = 0;
 
     function computerPlay() {
-        let randomPick = selections[(Math.floor(Math.random()* 3))];
-        return choices[randomPick].value;
+        return Math.floor(Math.random() * 3);
     }
 
     function playRound(playerChoice, computerChoice) {
-    
-        if (choices[playerChoice.toUpperCase()].value === computerChoice) {
-            return ("It's a draw");
-        } else if (((choices[playerChoice.toUpperCase()].value - computerChoice) % 3 == 1)) {
-            return ("You win!");
+        const gameResult = document.querySelector(".game-result"); // selecting the game-result attribute
+
+        if (choices[playerChoice].value === computerChoice) {
+            var content = gameResult.textContent = "It's a draw!";
+            return 0;
+        } else if (((choices[playerChoice].value - computerChoice) % 3 === 1) || 
+                    (choices[playerChoice].value - computerChoice) % 3 === -2) {
+            var content = gameResult.textContent = "You WIN!";
+            return 1;
         } else {
-            return ("Computer Wins :(");
+            var content = gameResult.textContent = "You Lose :(";
+            return 2;
         }
     }
 
-    function game() {
-        let wins = 0;
-        for (let i = 0; i <= 5; i++) {    
-            player = prompt("Enter a weapon ")
-            let result = playRound(player, computerPlay());
-            console.log(result);
-            if (result.includes('You')) {
-                wins++;
-            }
-        }
-        console.log(`You won ${wins} out of 5 games!`);
+    function getValue(e) { // gets the input of the button the user selects and plays a game with that selection
+        const selection = document.querySelectorAll('.selections');
+        const playerSelection = e.target.id; // gets the id from .selections
+        return playerSelection; // return the users button selection id
     }
+    
+    const startGame = document.addEventListener('click', displayData);
+
+    function displayData(e) {
+        
+        // All the things that update with the game being played
+        const cScoreCounter = document.querySelector("#c-score");
+        const pScoreCounter = document.querySelector("#p-score");
+        const pChoice = document.querySelector("#p-choice");
+        const cChoice = document.querySelector("#c-choice");
+
+    
+        let comp = computerPlay();
+        let player = getValue(e);
+        let result = playRound(player, comp);
+
+        if (result === 1) {
+            playerScores++;
+        } else if (result === 2) {
+            computerScores++;
+        } else {
+            ;
+        }
+
+        let playerScore = pScoreCounter.textContent = playerScores;
+        let compScore = cScoreCounter.textContent = computerScores;
+        let playerDecision = pChoice.textContent = player;   
+        let computerDecision = cChoice.textContent = selections[comp];
+    }
+
+    
+    function game() {
+        let games = 0;
+        let gameEnd = doument.querySelector('.game-result');
+
+        while (games < 5) {
+            displayData(e);
+            games++;
+        }
+        if (playerScores > computerScores) {
+                gameEnd.textContent = 'You win the game!';
+        } else if (computerScores > playerScores) {
+                gameEnd.textContent = 'You lost the game';
+        }
+        
+    }
+
+    
+             
+    
+
 
 </script>
 <body>
+    <div class="results">
+        <div class="player">
+            <h3>Player</h3>
+            <div class="player-choice">
+                <h6>Player Choice</h6>
+                <p id="p-choice"></p>
+            </div>
+            <div class="player-score">
+                <h6>Player Score</h6>
+                <p id="p-score"></p>
+            </div>
+        </div>
+        <div class="center"> 
+            <img class = "img" src="vs.png" alt="">
+            <p class="game-result"></p>
+        </div>
+        
+        <div class="computer">
+            <h3>Computer</h3>
+            <div class="computer-choice">
+                <h6>Computer Choice</h6>
+                <p id="c-choice"></p>
+            </div>
+            <div class="computer-score">
+                <h6>Computer Score</h6>
+                <p id="c-score"></p>
+            </div>
+        </div>
+    </div>
+    <div class="game-start">
+        <button class="game-button">START GAME</button>
+    </div>
+    <div class="button-container">
+        <div class="buttons">
+            <button class="selections" id="ROCK">Rock</button>
+            <button class="selections" id="PAPER">Paper</button>
+            <button class="selections" id="SCISSORS">Scissors</button>
+        </div>
+    </div>
+    
+    
     
 </body>
 </html>

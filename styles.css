@@ -1,0 +1,128 @@
+body {
+    background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    margin: 2px;
+}
+
+h6 {
+    text-align: center;
+    margin-top: 0px;
+    text-decoration: underline;
+    text-decoration-color: blueviolet;
+}
+
+#p-choice, #c-choice, #p-score, #c-score {
+    text-align: center;
+    padding-top: 20px;
+} 
+
+.results {
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    height: 300px;
+    width: 500px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.game-result {
+    text-align: center;
+    font-size: 16px;
+    padding-top: 175px;
+}
+
+.player {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.player-choice {
+    width: 100px;
+    height: 100px;
+} 
+
+.player-score {
+    width: 100px;
+    height: 100px;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 250px;
+}
+.img {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    align-self: center;
+}
+
+.computer {
+    display: flex;
+    width: 600px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.computer-choice {
+    height: 100px;
+    width: 100px;
+}
+
+.computer-score {
+    height: 100px;
+    width: 100px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 25px;
+    width: 500px;
+}
+
+.selections {
+    height: 100px;
+    width: 100px;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    outline: none;
+}
+
+.selections:active, .game-button:active {
+    box-shadow: 0 0 10px blueviolet;
+}
+
+.game-start {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.game-button {
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    outline: none;
+}
